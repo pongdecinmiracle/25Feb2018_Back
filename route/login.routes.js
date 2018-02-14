@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
+var moment = require('moment');
 const cors = require('cors')
-const Auth = require('../models/AuthDB')
+// const Auth = require('../models/AuthDB')
+const User = require('../models/user')
 const passport = require('passport')
 const jwt = require('jsonwebtoken'); 
 const expressJwt = require('express-jwt');
@@ -23,7 +25,7 @@ app.post('/',cors(), function(req, res,next) {
               // })
               console.log(req.body.Username)
               console.log(req.body.Pass)
-              Auth.findOne({ 
+              User.findOne({ 
                 Username: req.body.Username
               }, function(err, user) {
                   
@@ -40,10 +42,12 @@ app.post('/',cors(), function(req, res,next) {
                     res.json({ success: false, message: 'Authentication failed. Wrong password.' });
                     console.log("fail")
                     }else{
-                            
+                            var time = moment();
+                            var time_format = time.format('YYYY-MM-DD_HH:mm:ss');
+                            // console.log(time_format);
                             var profile = {
                                 email: user.Username,
-                                Pass: user.Pass
+                                time: time_format
                                     };
                             var token = jwt.sign(profile, secret,{
                                 expiresIn: '50m' // exp in 5 min
@@ -52,6 +56,8 @@ app.post('/',cors(), function(req, res,next) {
                               res.json({
                                   success: true,
                                   message: 'Enjoy your token!',
+                                  admin : user.Admin,
+                                  status : user.Status, 
                                   token: token
                                   
                                 });

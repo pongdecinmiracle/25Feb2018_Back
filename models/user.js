@@ -1,36 +1,22 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
-var userSchema = mongoose.Schema({
-	local: {
-		email: {type: String, unique: true},
-        pass: {type: String},
-        firstname : {type: String},
-        lastname: {type: String},
-        tel:{type: String},
-        reg_time : {
-                    type : Date, default: Date.now
-            }
-	},
-	facebook: {
-		id: String,
-		token: String,
-		email: String,
-		name: String
-	},
-	google: {
-		id: String,
-		token: String,
-		email: String,
-		name: String
-	}
-});
+const mongoose = require('mongoose')
+mongoose.Promise = require('bluebird')
 
-userSchema.methods.generateHash = function(password){
-	return bcrypt.hashSync(password, bcrypt.genSaltSync(9));
-}
+const Schema = mongoose.Schema
 
-userSchema.methods.validPassword = function(password){
-	return bcrypt.compareSync(password, this.local.password);
-}
+const UserSchema = new Schema({
+  Email: {type: String, unique: true},
+  Username: {type:String,unique:true},
+  Pass: {type: String,require: true},
+  Admin: {type: Number , default: 0},
+  Status:{type: String , default: "Require"},
+  reg_time : {
+            type : Date, default: Date.now
+        }
+})
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('users', UserSchema)
+
+module.exports = User
+//==============================================
+
+// required: true

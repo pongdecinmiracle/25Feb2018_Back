@@ -3,19 +3,18 @@ mongoose.Promise = require('bluebird')
 
 const Schema = mongoose.Schema
 
-const AuthSchema = new Schema({
+const AdminSchema = new Schema({
   Email: {type: String, unique: true},
   Username: {type:String,unique:true},
-  Pass: {type: String,require: true},
   Admin: {type: Number , default: 0},
   reg_time : {
             type : Date, default: Date.now
         }
 })
 
-const Auth = mongoose.model('auths', AuthSchema)
+const Admin = mongoose.model('admins', AdminSchema)
 
-module.exports = Auth
+module.exports = Admin
 //==============================================
 
 // required: true

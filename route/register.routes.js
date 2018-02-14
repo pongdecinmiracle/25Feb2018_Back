@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const Auth = require('../models/AuthDB')
+// const Auth = require('../models/AuthDB')
+const User = require('../models/user')
 const app = express.Router()
   app.route('/')
     // .get((req, res) => {
@@ -10,7 +11,7 @@ const app = express.Router()
     //   })
     // })
     .post((req, res) => {
-      var newTrack = Auth(req.body)
+      var newTrack = User(req.body)
       console.log(newTrack);
       // console.log(req.body)
       newTrack.save((err) => {
@@ -26,7 +27,7 @@ const app = express.Router()
       // console.log(req.body)
     })
 
- 
+
 module.exports = app
 
 

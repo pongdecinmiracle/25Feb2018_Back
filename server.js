@@ -33,6 +33,12 @@ app.use('/register', cors({ origin: 'http://localhost:80' }))
 const login = require('./route/login.routes') //login
 app.use('/login', login) //login
 app.use('/login', cors({ origin: 'http://localhost:80' }))
+const user = require('./route/user.routes') //login
+app.use('/user', user) //user
+app.use('/user', cors({ origin: 'http://localhost:80' }))
+const profile = require('./route/profile.routes') //profile
+app.use('/profile', profile) //user
+app.use('/profile', cors({ origin: 'http://localhost:80' }))
 
 //server.js run ^^
 app.listen(port, function() {
