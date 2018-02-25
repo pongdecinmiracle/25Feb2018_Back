@@ -4,12 +4,6 @@ const mongoose = require('mongoose')
 const User = require('../models/user')
 const app = express.Router()
   app.route('/')
-    // .get((req, res) => {
-    //   Auth.find({}, (err, docs) => {
-    //     res.send(docs)
-    //     console.log(docs)
-    //   })
-    // })
     .post((req, res) => {
       var newTrack = User(req.body)
       console.log(newTrack);

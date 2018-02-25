@@ -59,32 +59,42 @@ const app = express.Router()
                 User.updateMany({Email:req.body.Email},{Admin:req.body.Admin,Status:req.body.Status},(err,status)=>{
                         console.log(status)
                 })
-
-                
-                        // var newTrack = {
-                        //         Email : req.body.Email,
-                        //         Username : req.body.Username,
-                        //         Admin : req.body.Admin
-                        // }
-                        // newTrack= Admin(req.body)
-                        // console.log(newTrack);
-                        // // console.log(req.body)
-                        // newTrack.save((err) => {
-                        //   if (err) res.json({ 
-                        //             success: false, 
-                        //             message: 'Insert Failed.' 
-                        //       });
-                        //   else res.json({ 
-                        //             success: true, 
-                        //             message: 'Insert Success.'
-                        //       });
-                        // })
         })
-        app.post('/delete',cors(),function(req,res){
+        app.post('/user',cors(),function(req,res){
                 // console.log(req.body)
-
+                var decode = jwt.decode(req.headers['authorization']||req.body.token);
+                // console.log(decode.email)
+                User.findOne({"Username":decode.email}, (err, docs) => { //real
+                        //        Auth.find({Email:}, (err, docs) => {
+                                    res.json({
+                                                  success: true,
+                                                  docs : docs
+                                                
+                                  })
+                
+                })
         })
+        app.post('/user/update',cors(),function(req,res){
+                console.log(req.body)
+                var decode = jwt.decode(req.headers['authorization']||req.body.token);
+                console.log(decode.email)
+                User.updateMany(
+                        {Username:decode.email},
+                        { $set: { About :  [{"Age": req.body.age },{"Gender": req.body.gender }, { "AboutMe": req.body.aboutme}]}},
+                (err, docs) => { 
+                        if(err){
 
+                        } else {
+                                res.json({
+                                        success: true,
+                                        docs : docs
+                                                           
+                                   })
+                        }
+                        
+                
+                })
+        })
 
         //UpdateOne
                 // Auth.updateOne({Email : req.body.Email},{$set: {Admin : req.body.Admin}}, function(err, status) {

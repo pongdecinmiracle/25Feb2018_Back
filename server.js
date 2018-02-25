@@ -39,6 +39,15 @@ app.use('/user', cors({ origin: 'http://localhost:80' }))
 const profile = require('./route/profile.routes') //profile
 app.use('/profile', profile) //user
 app.use('/profile', cors({ origin: 'http://localhost:80' }))
+const dashboard = require('./route/dashboard.routes') //dashboard
+app.use('/dashboard', dashboard) //dashboard
+app.use('/dashboard', cors({ origin: 'http://localhost:80' }))
+const addrule = require('./route/addrule.routes') //addrule
+app.use('/addrule', addrule) //addrule
+app.use('/addrule', cors({ origin: 'http://localhost:80' }))
+const tables = require('./route/tables.routes') //tables
+app.use('/tables', tables) //tables
+app.use('/tables', cors({ origin: 'http://localhost:80' }))
 
 //server.js run ^^
 app.listen(port, function() {

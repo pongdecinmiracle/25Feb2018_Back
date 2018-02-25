@@ -5,6 +5,7 @@ const cors = require('cors')
 const db = require('mongoose')
 const test = require('../models/test')
 const Auth = require('../models/AuthDB')
+// const time = require('../models/time')
 
 //express for routing
 const app = express.Router()
@@ -12,22 +13,50 @@ const app = express.Router()
 // app.use((req, res, next) => {
 //     next()
 //   })
-app.get('/',cors(), function(req, res,next) {
+app.post('/',cors(), function(req, res,next) {
     // test.find({},(err, docs) => {
     //     res.send(docs)
     //   })
     // })
 
-    test.aggregate([ 
-        {$match : { $or : [{type: "event", "event.signature-id" : 1000004},{type: "event", "event.signature-id" : 1000005}] }},
-        {$group : { _id : "$event.signature-id" , total_packet: { $sum: 1}}}
+
+    // test.aggregate([ 
+    //     {$match : { $or : [{type: "event", "event.signature-id" : 1000004},{type: "event", "event.signature-id" : 1000005}] }},
+    //     {$group : { _id : "$event.signature-id" , total_packet: { $sum: 1}}}
         
-    ],(err, docs) => {
-        res.json(docs)
-        // console.log(docs)
-        // console.log(err)
-      })
+    // ],(err, docs) => {
+    //     res.json(docs)
+    //     // console.log(docs)
+    //     // console.log(err)
+    //   })
+
+    //Time
+    //   time.save(function (err, fluffy) {
+    //             if (err) return console.error(err);
+    //             else console.log("Save Success");
+    //         });
+
   })
+
+//   app.post('/chart',cors(), function(req, res,next) {
+//     // console.log(req.body)
+//     a = []
+//     a = req.body.rule
+//     // console.log(a)
+//     test.aggregate([ 
+//         {$match : { $or : a}},
+//         {$group : { _id : "$sig_id" , total_packet: { $sum: 1}}}
+        
+//     ],(err, docs) => {
+//       if(err){
+//         console.log("err")
+//       }else{
+//         console.log(docs)
+//         res.json(docs)
+//       }
+
+//       })
+//   })
 
 module.exports = app
 
@@ -103,4 +132,10 @@ test.find(function(err, docsNotFound){
 //    db.alert.aggregate([ 
 //     {$match : {type: "event", "event.signature-id" : 1000004}},
 //     {$group : { _id : "$event.signature-id" , total_packet: { $sum: 1}}}
+// ])
+
+
+// db.tests.aggregate([ 
+//     {$match : {proto : "ICMP" , sig_id : "1000005"}},
+//     {$group : { _id : "$sig_id" , total_packet: { $sum: 1}}}
 // ])
