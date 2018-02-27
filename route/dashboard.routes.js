@@ -45,7 +45,7 @@ const app = express.Router()
 
     //Show Chart Package for Alert1  : Dashboard Circle
       app.get('/chartCircle1',cors(), function(req, res,next) {
-          Rule.aggregate([
+          Rule1.aggregate([
             {$lookup:
                 {
                   from: "alert1s",
@@ -64,7 +64,7 @@ const app = express.Router()
 
     //Show Chart Package for Alert2  : Dashboard Circle
       app.get('/chartCircle2',cors(), function(req, res,next) {
-        Rule.aggregate([
+        Rule2.aggregate([
           {$lookup:
               {
                 from: "alert2s",
@@ -83,7 +83,7 @@ const app = express.Router()
     
     //Show Chart Package for Alert3  : Dashboard Circle
       app.get('/chartCircle3',cors(), function(req, res,next) {
-        Rule.aggregate([
+        Rule3.aggregate([
           {$lookup:
               {
                 from: "alert3s",

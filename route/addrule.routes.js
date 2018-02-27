@@ -175,33 +175,48 @@ const app = express.Router()
 //Add modifyRule to Rule1
 app.route('/deleteRule1')
 .post(cors(), function(req, res,next) {
-  Rule1.findOne({Sig_id:req.body.sid_delete},(err, docs) => { 
-      Rule1.findOneAndRemove({_id : docs._id}, function (err,offer){
-        if(err) { throw err; }
-      // console.log(offer)
-    })
-})
-})
-//Add modifyRule to Rule2
-app.route('/deleteRule')
-.post(cors(), function(req, res,next) {
-  Rule2.findOne({Sig_id:req.body.sid_delete},(err, docs) => { 
-      Rule2.findOneAndRemove({_id : docs._id}, function (err,offer){
-        if(err) { throw err; }
-      // console.log(offer)
-    })
-})
-})
-//Add modifyRule to Rule3
-  app.route('/deleteRule')
-    .post(cors(), function(req, res,next) {
-      Rule3.findOne({Sig_id:req.body.sid_delete},(err, docs) => { 
-          Rule3.findOneAndRemove({_id : docs._id}, function (err,offer){
-            if(err) { throw err; }
+  if(req.body.Sig_id){
+        Rule1.findOne({Sig_id:req.body.Sig_id},(err, docs) => { 
+          Rule1.findOneAndRemove({_id : docs._id}, function (err,offer){
+            // if(err) { throw err; }
           // console.log(offer)
         })
     })
-  })
+  }else if(req.body.Sig_id==""){
+
+  }
+
+})
+//Add modifyRule to Rule2
+app.route('/deleteRule2')
+.post(cors(), function(req, res,next) {
+  if(req.body.Sig_id){
+    Rule2.findOne({Sig_id:req.body.Sig_id},(err, docs) => { 
+      Rule2.findOneAndRemove({_id : docs._id}, function (err,offer){
+        // if(err) { throw err; }
+      // console.log(offer)
+    })
+})
+}else if(req.body.Sig_id==""){
+
+}
+
+})
+//Add modifyRule to Rule3
+  app.route('/deleteRule3')
+    .post(cors(), function(req, res,next) {
+      if(req.body.Sig_id){
+        Rule3.findOne({Sig_id:req.body.Sig_id},(err, docs) => { 
+          Rule3.findOneAndRemove({_id : docs._id}, function (err,offer){
+            // if(err) { throw err; }
+          // console.log(offer)
+        })
+    })
+  }else if(req.body.Sig_id==""){
+
+  }
+
+})
   
 
 module.exports = app
