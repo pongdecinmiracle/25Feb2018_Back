@@ -6,7 +6,7 @@ const app = express.Router()
   app.route('/')
     .post((req, res) => {
       var newTrack = User(req.body)
-      console.log(newTrack);
+      // console.log(newTrack);
       // console.log(req.body)
       newTrack.save((err) => {
         if (err) res.json({ 

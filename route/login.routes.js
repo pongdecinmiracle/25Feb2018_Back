@@ -42,12 +42,12 @@ app.post('/',cors(), function(req, res,next) {
                     res.json({ success: false, message: 'Authentication failed. Wrong password.' });
                     console.log("fail")
                     }else{
-                            var time = moment();
-                            var time_format = time.format('YYYY-MM-DD_HH:mm:ss');
+                            // var time = moment();
+                            // var time_format = time.format('YYYY-MM-DD_HH:mm:ss');
                             // console.log(time_format);
                             var profile = {
                                 email: user.Username,
-                                time: time_format
+                                Last_Date: user.Last_Date
                                     };
                             var token = jwt.sign(profile, secret,{
                                 expiresIn: '50m' // exp in 5 min
@@ -61,7 +61,7 @@ app.post('/',cors(), function(req, res,next) {
                                   token: token
                                   
                                 });
-                                console.log(token)
+                                // console.log(token)
                                 
 
                             }

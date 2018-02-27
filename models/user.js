@@ -12,9 +12,14 @@ const UserSchema = new Schema({
   Gender: {type: String ,default: null},
   Aboutme : {type: String , default: null},
   Status:{type: String , default: "Require"},
-  reg_time : {
-            type : Date, default: Date.now
-        }
+  Alert1_new : {type: Number , default: 0},
+  Alert2_new : {type: Number , default: 0},
+  Alert3_new : {type: Number , default: 0},
+  Last_Date1 : {type : String, default: Date.now},
+  Last_Date2 : {type : String, default: Date.now},
+  Last_Date3 : {type : String, default: Date.now},
+  Create_Date : {type : Date, default: Date.now},
+  Last_Date : {type : String, default: Date.now}
 })
 
 const User = mongoose.model('users', UserSchema)

@@ -8,12 +8,12 @@ const RuleSchema = new Schema({
         Color : {type: String},
         Msg : {type: String},
         Manual : {type : String},
-        Use : {type : String},
+        Use : {type : String, default: "Using"},
         reg_time : {
-                type : Date, default: Date.now
+                type : Date, default: Date("<YYYY-mm-ddTHH:MM:ss>")
             }
 })
 // const test = mongoose.model('tests', testSchema)
-const rule = mongoose.model('rules', RuleSchema)
+const rule = mongoose.model('alert2_rules', RuleSchema)
 
 module.exports = rule

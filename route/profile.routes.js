@@ -57,7 +57,7 @@ const app = express.Router()
                 console.log(req.body)
 
                 User.updateMany({Email:req.body.Email},{Admin:req.body.Admin,Status:req.body.Status},(err,status)=>{
-                        console.log(status)
+                        // console.log(status)
                 })
         })
         app.post('/user',cors(),function(req,res){
@@ -75,9 +75,9 @@ const app = express.Router()
                 })
         })
         app.post('/user/update',cors(),function(req,res){
-                console.log(req.body)
+                // console.log(req.body)
                 var decode = jwt.decode(req.headers['authorization']||req.body.token);
-                console.log(decode.email)
+                // console.log(decode.email)
                 User.updateMany(
                         {Username:decode.email},
                         { $set: { About :  [{"Age": req.body.age },{"Gender": req.body.gender }, { "AboutMe": req.body.aboutme}]}},

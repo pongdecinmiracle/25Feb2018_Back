@@ -8,9 +8,8 @@ const AuthSchema = new Schema({
   Username: {type:String,unique:true},
   Pass: {type: String,require: true},
   Admin: {type: Number , default: 0},
-  reg_time : {
-            type : Date, default: Date.now
-        }
+  Create_Date : {type : Date, default: Date.now},
+  Last_Date : {type : Date, default: Date.now}
 })
 
 const Auth = mongoose.model('auths', AuthSchema)
