@@ -175,8 +175,8 @@ const app = express.Router()
 //Add modifyRule to Rule1
 app.route('/deleteRule1')
 .post(cors(), function(req, res,next) {
-  if(req.body.Sig_id){
-        Rule1.findOne({Sig_id:req.body.Sig_id},(err, docs) => { 
+  if(req.body.sid){
+        Rule1.findOne({Sig_id:req.body.sid},(err, docs) => { 
           Rule1.findOneAndRemove({_id : docs._id}, function (err,offer){
             // if(err) { throw err; }
           // console.log(offer)
@@ -190,8 +190,8 @@ app.route('/deleteRule1')
 //Add modifyRule to Rule2
 app.route('/deleteRule2')
 .post(cors(), function(req, res,next) {
-  if(req.body.Sig_id){
-    Rule2.findOne({Sig_id:req.body.Sig_id},(err, docs) => { 
+  if(req.body.sid){
+    Rule2.findOne({Sig_id:req.body.sid},(err, docs) => { 
       Rule2.findOneAndRemove({_id : docs._id}, function (err,offer){
         // if(err) { throw err; }
       // console.log(offer)
@@ -205,8 +205,8 @@ app.route('/deleteRule2')
 //Add modifyRule to Rule3
   app.route('/deleteRule3')
     .post(cors(), function(req, res,next) {
-      if(req.body.Sig_id){
-        Rule3.findOne({Sig_id:req.body.Sig_id},(err, docs) => { 
+      if(req.body.sid){
+        Rule3.findOne({Sig_id:req.body.sid},(err, docs) => { 
           Rule3.findOneAndRemove({_id : docs._id}, function (err,offer){
             // if(err) { throw err; }
           // console.log(offer)
